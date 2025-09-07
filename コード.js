@@ -139,5 +139,12 @@ function makeWorkShiftRow(row, startTime, endTime) {
     let range = sheet.getRange(`${colStart}${row}:${colEnd}${row}`);
     range.setBackground(color)
   }    
+}
 
+
+function getActiveSheetName() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getActiveSheet();
+  var sheetName = sheet.getName();
+  return sheetName;
 }
