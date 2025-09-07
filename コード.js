@@ -86,6 +86,9 @@ function makeWorkShiftDiagram() {
   rangeColumn.setBackground(colorDefault)
   rangeColumn.setBorder(false,false,false,false,false,false);
 
+  var lastRow = sheet.getMaxRows();
+  sheet.showRows(1, lastRow);
+
   // TODO : シート名を確認
   let range = sheet.getRange("A:I");
   let values = range.getValues();
@@ -146,6 +149,8 @@ function makeWorkShiftRow(row, startTime, endTime) {
 
     let range = sheet.getRange(`${colStart}${row}:${colEnd}${row}`);
     range.setBackground(color)
+  } else {
+    sheet.hideRow(sheet.getRange(`A${row}`));
   }    
 }
 
