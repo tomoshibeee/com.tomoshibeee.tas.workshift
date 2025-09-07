@@ -65,7 +65,7 @@ function createWorkshift(date) {
 
 function makeWorkShiftDiagram() {
   // --- user settings ---
-  startRow = 3
+  const startRow = 3
   const startColumn = "K";
   const colorDefault = "white"
   // --- user settings ---
