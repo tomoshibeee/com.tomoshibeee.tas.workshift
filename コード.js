@@ -14,7 +14,7 @@ function setEnvVariable() {
   props.setProperty("BAR_COLOR", "red");
 }
 
-function copyAllWorkerSheet() {
+function copyAllWorkerMonthlyTimeTable() {
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let workerSheet = spreadsheet.getSheetByName("Worker");
   let range = workerSheet.getRange("E:E");
@@ -26,7 +26,7 @@ function copyAllWorkerSheet() {
     if (values[i][0] == "") {
       break;
     }
-    copyWorkerSheet(values[i][0]);
+    copyWorkerMonthlyTimeTable(values[i][0]);
   }
 
   const title = "出勤予定";
@@ -35,11 +35,16 @@ function copyAllWorkerSheet() {
 
 }
 
-function copyWorkerSheet(newSheetName) {
+function copyWorkerMonthlyTimeTable(newSheetName) {
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
 
   var templateSheetName = 'X0000:name';
   var templateSheet = spreadsheet.getSheetByName(templateSheetName);
+
+  if (sheetExists(newSheetName)) {
+    Logger.log(`シート「${newSheetName}」という名前のシートは存在するため、作成しませんでした。`);
+    return;
+  }
 
   if (templateSheet) {
     var newSheet = templateSheet.copyTo(spreadsheet);
@@ -152,6 +157,11 @@ function makeWorkShiftRow(row, startTime, endTime) {
   } else {
     sheet.hideRow(sheet.getRange(`A${row}`));
   }    
+}
+
+function sheetExists(sheetName) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  return ss.getSheetByName(sheetName) !== null;
 }
 
 function checkDayFormat(sheetName) {
