@@ -64,6 +64,14 @@ function createWorkshift(date) {
 }
 
 function makeWorkShiftDiagram() {
+  const sheetName = getActiveSheetName()
+  if (!checkDayFormat(sheetName)) {
+    const title = "シフト表作成";
+    const prompt = "シフト表を作成できませんでした";
+    const response = Browser.msgBox(title, prompt, Browser.Buttons.OK);
+    return 
+  }
+
   // --- user settings ---
   const startRow = 3
   const startColumn = "K";
@@ -141,6 +149,18 @@ function makeWorkShiftRow(row, startTime, endTime) {
   }    
 }
 
+function checkDayFormat(sheetName) {
+  var regex = /^Day([1-9]\d*)$/;
+  var match = sheetName.match(regex);
+  
+  if (match) {
+    Logger.log(sheetName + " is valid, number = " + match[1]);
+    return true;
+  } else {
+    Logger.log(sheetName + " is invalid");
+    return false;
+  }
+}
 
 function getActiveSheetName() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
