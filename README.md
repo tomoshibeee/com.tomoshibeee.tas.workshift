@@ -1,50 +1,38 @@
-# 📑 Feature Specification
+# Workshift Management Spreadsheet System
 
-This document describes the features of the Workshift Management Spreadsheet System.
-
----
-
-## 1. Initialization
-- **Input**: Month (e.g., September 2025)  
-- **Process**: Initialize the system based on the specified month  
-  - Generate calendar (dates)  
-  - Prepare the monthly sheet  
+[English Documentation](docs/en/index.md) | [日本語ドキュメント](docs/ja/index.md)
 
 ---
 
-## 2. Generate Worker Timetable Sheets
-- **Input**: Worker list (IDs, names)  
-- **Process**: Automatically create a timetable sheet for each worker  
-- **Output**: Individual sheets per worker  
+## 📌 Overview
+
+This project provides a spreadsheet-based system to manage worker shifts efficiently.  
+It supports:
+
+- Automatic generation of worker timetable sheets
+- Manual editing and confirmation of shifts
+- Daily and monthly workshift diagram generation
 
 ---
 
-## 3. Edit Worker Timetable Sheets
-- **Operation**: Managers or workers manually edit their timetable sheets  
-- **Purpose**: Input shift preferences, make corrections, confirm schedules  
-- **Output**: Confirmed timetables  
+## 📂 Documentation
+
+- [English Installation](docs/en/installation.md)  
+- [English Usage](docs/en/usage.md)  
+- [English Feature Specification](docs/en/features.md)  
+
+- [日本語インストール手順](docs/ja/installation.md)  
+- [日本語使い方](docs/ja/usage.md)  
+- [日本語機能仕様書](docs/ja/features.md)
 
 ---
 
-## 4. Export Workshift Diagrams
+## 📜 License
 
-### 4-1. Daily Workshift Diagram (By Date)
-- **Input**: Specific date (e.g., 2025/09/08)  
-- **Output**: Generate a workshift diagram for that day on the daily sheet  
+This project is **open source (OSS)** and is distributed under the [MIT License](LICENSE).  
 
-### 4-2. Monthly Workshift Diagrams (By Month)
-- **Input**: Specific month (e.g., September 2025)  
-- **Output**: Generate all daily workshift diagrams for the month  
+For **commercial or proprietary use**, a separate license is required.  
+Please contact the maintainer for licensing information.
 
-### 4-3. Redraw Daily Workshift Diagram
-- **Input**: Current or specified date  
-- **Process**: Redraw the daily workshift diagram on the daily sheet using the latest data  
-- **Output**: Updated workshift diagram  
-
----
-
-## Workflow Summary
-1. Initialize the system by specifying a month  
-2. Generate timetable sheets for all workers  
-3. Manually edit and confirm the timetables  
-4. Export workshift diagrams (daily or monthly) and redraw as needed  
+- OSS (MIT License) → Free to use, modify, and distribute  
+- Commercial License → Paid license for businesses or proprietary use
