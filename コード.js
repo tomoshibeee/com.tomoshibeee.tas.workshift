@@ -179,6 +179,19 @@ function makeWorkShiftRow(row, startTime, endTime) {
 }
 
 function exportDailyWorkShift(date) {
+  // TODO : シートの存在チェック
+
+  // シートのコピー
+
+  // 日付の入力
+
+  // シフト表の作成
+}
+
+function exportMonthlyWorkShift(date) {
+  // TODO : exportDailyWorkShift
+}
+
 function sheetExists(sheetName) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   return ss.getSheetByName(sheetName) !== null;
