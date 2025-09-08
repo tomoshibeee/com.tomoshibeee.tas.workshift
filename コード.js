@@ -179,17 +179,62 @@ function makeWorkShiftRow(row, startTime, endTime) {
 }
 
 function exportDailyWorkShift(date) {
-  // TODO : シートの存在チェック
+  var newSheetName = date.getDate();
 
-  // シートのコピー
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var templateSheetName = "0";
 
-  // 日付の入力
+  if (sheetExists(newSheetName)) {
+    Logger.log(`シート ${newSheetName} は既に存在しています。処理を中止します。`);
+    return;
+  }
 
-  // シフト表の作成
+  var templateSheet = spreadsheet.getSheetByName(templateSheetName);
+  if (!templateSheet) {
+    throw new Error(`テンプレートシート ${templateSheetName} が存在しません。`);
+  }
+  var newSheet = templateSheet.copyTo(spreadsheet);
+  newSheet.setName(newSheetName);
+
+  if (date instanceof Date) {
+    var formattedDate = Utilities.formatDate(date, Session.getScriptTimeZone(), "yyyy/MM/dd");
+    newSheet.getRange("C1").setValue(formattedDate);
+  } else {
+    newSheet.getRange("C1").setValue(date);
+  }
+
+  // ✅ シフト表の作成（仮置き）
+
+  Logger.log(`${date} 分のシート 「${newSheetName}」 を作成しました。`);
 }
 
-function exportMonthlyWorkShift(date) {
-  // TODO : exportDailyWorkShift
+function exportMonthlyWorkShift() {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var templateSheetName = "0";
+  var sheet = spreadsheet.getSheetByName(templateSheetName);
+  var range = sheet.getRange("C1");
+
+  var startOfMonth = range.getValue();
+  var endOfLastMonth = new Date(startOfMonth);
+  endOfLastMonth.setDate(startOfMonth.getDate()-1);
+
+  for (let i = 1; i <= 31; i++) {
+    var date = new Date(endOfLastMonth);
+    date.setDate(endOfLastMonth.getDate()+i);
+    exportDailyWorkShift(date)
+  }
+}
+
+function removeMonthlyWorkShift() {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  for (let i = 1; i <= 31; i++) {
+    var sheetName = i;
+    var sheet = spreadsheet.getSheetByName(sheetName);
+    if (sheet) {
+      spreadsheet.deleteSheet(sheet);
+      Logger.log(`シート 「${sheetName}」 を作成しました。`);
+    }
+  }
 }
 
 function sheetExists(sheetName) {
