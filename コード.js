@@ -121,7 +121,7 @@ function makeWorkShiftDiagram() {
         continue;
       }
       if (values[i][0] == "") {
-        rangeColumn = sheet.getRange(`$A${startRow+1}:H${i}`);
+        rangeColumn = sheet.getRange(`$A${startRow+1}:I${i}`);
         rangeColumn.setBorder(true,true,true,true,true, true,"black", SpreadsheetApp.BorderStyle.SOLID);
         rangeColumn = sheet.getRange(`${startColumn}${startRow+1}:BR${i}`);
         rangeColumn.setBorder(true,true,true,true,true, true,"black", SpreadsheetApp.BorderStyle.SOLID);
