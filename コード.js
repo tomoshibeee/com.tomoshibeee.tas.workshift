@@ -184,7 +184,8 @@ function sheetExists(sheetName) {
 }
 
 function checkDayFormat(sheetName) {
-  var regex = /^Day([1-9]\d*)$/;
+  // var regex = /^Day([1-9]\d*)$/;
+  var regex = /^([0-9]\d*)$/;
   var match = sheetName.match(regex);
   
   if (match) {
