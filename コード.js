@@ -58,6 +58,25 @@ function copyWorkerMonthlyTimeTable(newSheetName) {
   }
 }
 
+function removeAllWorkerMonthlyTimeTable() {
+  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  let workerSheet = spreadsheet.getSheetByName("Worker");
+  let range = workerSheet.getRange("E:E");
+  var values = range.getValues();
+  for (let i = 0; i < values.length; i++) {
+    if (i == 0) {
+      continue;
+    }
+    if (values[i][0] == "") {
+      break;
+    }
+    var sheet = spreadsheet.getSheetByName(values[i][0]);
+    if (sheet) {
+      spreadsheet.deleteSheet(sheet);
+    }
+  }
+}
+
 function createWorkshift(date) {
   const title = "シフト表作成";
   const prompt = "シフト表を作成してもよろしいですか?";
