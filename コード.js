@@ -178,6 +178,7 @@ function makeWorkShiftRow(row, startTime, endTime) {
   }    
 }
 
+function exportDailyWorkShift(date) {
 function sheetExists(sheetName) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   return ss.getSheetByName(sheetName) !== null;
