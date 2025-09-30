@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <h1>初期設定</h1>
+    <div>
+      <button onClick="init()">Initialize</button>
+    </div>
+    <hr>
+    <h1>シフト表</h1>
+    <div>
+      <input type="date" id="month"/>
+      <button onClick="generateWorkshiftTable()">Generate Workshift Tables</button>
+    </div>
+    <hr>
+    <h1>ガントチャート</h1>
+    <div>
+      <input type="date" id="ganttChartDate" />
+      <button onClick="generateGanttChart()">Generate Workshift</button>
+    </div>
+    <hr>
+    <h1>祝日の設定</h1>
+      <p>祝日は<a href="https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html">内閣府のページ</a>を参考にして、Holidayに追加してください。</p>
+
+    <script>
+    function setTodayDate() {
+      var today = new Date();
+      var yyyy = today.getFullYear();
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+      var dd = String(today.getDate()).padStart(2, '0');
+      var formattedDate = `${yyyy}-${mm}-${dd}`;
+      document.getElementById("month").value = formattedDate;
+      document.getElementById("ganttChartDate").value = formattedDate;
+    }
+
+    function init() {
+      google.script.run.init();
+    }
+
+    function generateWorkshiftTable() {
+      google.script.run.copyAllWorkerMonthlyTimeTable();
+    }
+
+    function generateGanttChart() {
+      const date = document.getElementById('ganttChartDate');
+      google.script.run.createWorkshift(date);
+    }
+    
+    document.addEventListener('DOMContentLoaded', setTodayDate);
+    </script>
+  </body>
+</html>

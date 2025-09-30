@@ -1,3 +1,21 @@
+function onOpen(e) {
+  SpreadsheetApp
+  .getUi()
+  .createAddonMenu()
+  .addItem('サイドバーを表示する', 'showSidebar')
+  .addToUi();
+}
+
+function showSidebar() {
+  const sidebarUi = HtmlService
+  .createHtmlOutputFromFile('Sidebar')
+  .setTitle('シフト作成');
+  
+  SpreadsheetApp
+  .getUi()
+  .showSidebar(sidebarUi);
+}
+
 function init() {
   const title = "初期設定";
   const prompt = "対象年月は設定しましたか?";
